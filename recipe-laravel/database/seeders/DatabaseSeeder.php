@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use App\Models\Recipe;
 use Illuminate\Database\Seeder;
 
@@ -15,9 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(5)->create();
+        // \App\Models\User::factory(5)->create();
+
+        $user = User::factory()->create([
+            'name'=>'Ameer Hamza',
+            'email'=>'ameer7hamza10@gmail.com',
+            // 'password'=>'123456',
+        ]);
 
         Recipe::create([
+            'user_id' => $user->id,
             'title' => 'Chicken Vegetabe Roast',
             'category' => 'Chicken',
             'ingredient' => 'Salt, Pepper, Redchilli, Yogurt,',
@@ -25,6 +33,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Recipe::create([
+            'user_id' => $user->id,
             'title' => 'Beef Italian Stake',
             'category' => 'Beef',
             'ingredient' => 'Salt, Pudding, Yogurt,',
